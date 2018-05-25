@@ -20,15 +20,15 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import Main.Egg;
 
 public class Gestor extends JFrame implements KeyListener {
-
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	JTable tablaProcesos1,tablaProcesos2;
 	List<Procesos> listaP = new ArrayList<Procesos>();
 	List<Segmento> listaS = new ArrayList<Segmento>();
-	int orden = 1,espacioTotal=2048,numLines,lineStart,lineEnd,eleccion;
+	int orden = 1,espacioTotal=2048,cd,eleccion;
 	public Segmento s1 = new Segmento(),s2 = new Segmento();
 	int[] arregloIds;
 	String def ="___",lineText,endLine,ultimaExpresion;
@@ -37,6 +37,7 @@ public class Gestor extends JFrame implements KeyListener {
 	JComboBox cbOrden;
 	Element lineElem,rootElem;
 	private JTextField taConsola;
+	Egg e = new Egg(); 
 	
 	public Gestor() {
 		
@@ -186,6 +187,8 @@ public class Gestor extends JFrame implements KeyListener {
 				taConsola.setText(taConsola.getText().substring(0,0));
 			}else {
 				taConsola.setText("Proceso ya existente");
+				cd++;
+				e.cd(cd, taConsola);
 			}
 		}
 	}
@@ -465,6 +468,7 @@ public class Gestor extends JFrame implements KeyListener {
 		}
 		repintarTablas();
 	}
+	
 	
 	public boolean nombreExistente(String nombre) {
 		Iterator<Procesos> iterP = listaP.iterator();
